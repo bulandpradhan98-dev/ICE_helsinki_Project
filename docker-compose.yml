@@ -1,0 +1,63 @@
+services:
+  db:
+    image: timescale/timescaledb-ha:pg16
+    container_name: helsinki-transit-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/home/postgres/pgdata/data
+      - ./backend/sql:/docker-entrypoint-initdb.d
+
+  backend:
+    build:
+      context: ./backend
+    container_name: helsinki-transit-api
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - ./backend/app:/app/app
+      - ./data:/app/data
+    ports:
+      - "${API_PORT:-8000}:8000"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+  realtime-poller:
+    build:
+      context: ./backend
+    container_name: helsinki-transit-poller
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - ./backend/app:/app/app
+      - ./data:/app/data
+    command: python -m app.workers.realtime_poller
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: helsinki-transit-web
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "${FRONTEND_PORT:-5173}:5173"
+    command: npm run dev -- --host 0.0.0.0 --port 5173
+
+volumes:
+  postgres_data:

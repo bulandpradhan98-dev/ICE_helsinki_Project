@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-04-27T06:20:30.639Z",
+  "latest_realtime_vehicle_position_at": "2026-04-27T06:20:16.155275Z",
+  "latest_realtime_trip_update_at": "2026-04-27T06:20:16.223731Z",
+  "feature_windows": 164538,
+  "latest_feature_bucket": "2026-04-27T06:00:00+00:00",
+  "cluster_assignments": 6000,
+  "hotspot_count": 416,
+  "active_anomalies": 338,
+  "avg_prediction_coverage": 0.9740208010008077,
+  "cluster_run_id": 13,
+  "anomaly_run_id": 14,
+  "kmeans_selected": {
+    "k": 2,
+    "n_init": 20
+  },
+  "dbscan_selected": {
+    "eps": 0.4,
+    "min_samples": 15
+  },
+  "isolation_forest_selected": {
+    "max_samples": 256,
+    "n_estimators": 100,
+    "contamination": 0.05
+  },
+  "lof_selected": {
+    "n_neighbors": 10,
+    "contamination": 0.02
+  },
+  "kmeans_metrics": {
+    "k": 2,
+    "silhouette": 0.6813850623321256,
+    "davies_bouldin": 0.5567966233569899,
+    "calinski_harabasz": 9292.197024296618
+  },
+  "dbscan_metrics": {
+    "eps": 0.4,
+    "silhouette": 0.621394973590196,
+    "min_samples": 15,
+    "noise_share": 0.04533333333333334,
+    "cluster_count": 4,
+    "davies_bouldin": 0.3980576356629021,
+    "calinski_harabasz": 5984.807810153709
+  },
+  "isolation_forest_metrics": {
+    "recall": 0.5059760956175299,
+    "f1_proxy": 0.5069860279441119,
+    "max_samples": 256,
+    "n_estimators": 100,
+    "contamination": 0.05,
+    "precision_at_k": 0.508,
+    "false_alarm_share": 0.0246
+  },
+  "lof_metrics": {
+    "recall": 0.055776892430278883,
+    "f1_proxy": 0.07999999999999999,
+    "n_neighbors": 10,
+    "contamination": 0.02,
+    "precision_at_k": 0.1414141414141414,
+    "false_alarm_share": 0.017
+  }
+}

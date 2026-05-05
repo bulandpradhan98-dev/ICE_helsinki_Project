@@ -1,0 +1,13 @@
+asyncpg==0.30.0
+fastapi==0.116.1
+gtfs-realtime-bindings==1.0.0
+httpx==0.28.1
+joblib==1.5.2
+numpy==2.3.5
+orjson==3.11.3
+pandas==2.3.3
+pydantic-settings==2.11.0
+scikit-learn==1.8.0
+scipy==1.16.3
+shapely==2.1.2
+uvicorn[standard]==0.35.0

@@ -1,0 +1,43 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+node_modules/
+dist/
+build/
+frontend/dist/
+.DS_Store
+Thumbs.db
+data/raw/
+data/processed/
+data/cache/
+coverage/
+.idea/
+.vscode/
+
+# Local databases, logs, and runtime artifacts
+*.db
+*.sqlite
+*.sqlite3
+*.log
+logs/
+
+# Large generated/history exports. Keep notebook outputs and selected screenshots,
+# but do not push raw/repeated GTFS-RT history snapshots.
+reports/history_exports/
+
+# Local reference repos used for design inspiration, not part of this project.
+reference/devrel-gtfs-transit/
+
+# Presentation build workspace. Final slides can be copied to reports/presentation/.
+presentation_work/
+
+# Jupyter/runtime cache
+.ipynb_checkpoints/

@@ -1,0 +1,1062 @@
+{
+  "generated_at": "2026-04-27T06:20:30.639Z",
+  "api_base": "http://localhost:8000/api/v1",
+  "scope": "HSL bus-only reliability analysis; route_type IN (701, 702, 704)",
+  "ingestion": {
+    "latest_batch_id": 6,
+    "latest_batch_started_at": "2026-03-31T09:36:45.239832Z",
+    "latest_vehicle_position_at": "2026-04-27T06:20:16.155275Z",
+    "latest_trip_update_at": "2026-04-27T06:20:16.223731Z",
+    "service_start_date": "2026-04-02",
+    "service_end_date": "2026-05-25",
+    "routes_count": 461,
+    "stops_count": 8382,
+    "trips_count": 291969,
+    "stop_times_count": 7988056,
+    "vehicle_positions_count": 0,
+    "trip_updates_count": 0,
+    "matched_events_count": 0,
+    "adherence_events_count": 0
+  },
+  "model_status": {
+    "feature_windows": 164538,
+    "latest_feature_bucket": "2026-04-27T06:00:00+00:00",
+    "cluster_assignments": 6000,
+    "hotspot_count": 416,
+    "active_anomalies": 338,
+    "avg_prediction_coverage": 0.9740208010008077,
+    "latest_cluster_run": "2026-04-27T06:16:28.791806+00:00",
+    "latest_anomaly_run": "2026-04-27T06:18:09.741834+00:00"
+  },
+  "latest_cluster_run": {
+    "id": 13,
+    "family": "clustering",
+    "algorithm": "kmeans_dbscan",
+    "started_at": "2026-04-27T06:15:56.338368+00:00",
+    "completed_at": "2026-04-27T06:16:28.791806+00:00",
+    "rows_used": 6000,
+    "selected_params": {
+      "dbscan": {
+        "eps": 0.4,
+        "min_samples": 15
+      },
+      "kmeans": {
+        "k": 2,
+        "n_init": 20
+      },
+      "thresholds": {
+        "feed_stale_threshold": 744046.73,
+        "coverage_low_threshold": 0.9462,
+        "late_hotspot_threshold": 0,
+        "delay_hotspot_threshold": 0,
+        "coverage_watch_threshold": 0.9649
+      }
+    },
+    "metrics": {
+      "dbscan_trials": [
+        {
+          "eps": 0.4,
+          "silhouette": 0.5483501819482096,
+          "min_samples": 5,
+          "noise_share": 0.015333333333333332,
+          "cluster_count": 7,
+          "davies_bouldin": 0.4284938087649212,
+          "calinski_harabasz": 2587.5434856551697
+        },
+        {
+          "eps": 0.4,
+          "silhouette": 0.5787278654802414,
+          "min_samples": 10,
+          "noise_share": 0.03216666666666667,
+          "cluster_count": 5,
+          "davies_bouldin": 0.4291666665381285,
+          "calinski_harabasz": 4243.60409641785
+        },
+        {
+          "eps": 0.4,
+          "silhouette": 0.621394973590196,
+          "min_samples": 15,
+          "noise_share": 0.04533333333333334,
+          "cluster_count": 4,
+          "davies_bouldin": 0.3980576356629021,
+          "calinski_harabasz": 5984.807810153709
+        },
+        {
+          "eps": 0.4,
+          "silhouette": 0.5727656765238426,
+          "min_samples": 20,
+          "noise_share": 0.0535,
+          "cluster_count": 5,
+          "davies_bouldin": 0.36566891322769396,
+          "calinski_harabasz": 4901.852190265238
+        },
+        {
+          "eps": 0.6,
+          "silhouette": 0.5497823034812562,
+          "min_samples": 5,
+          "noise_share": 0.009,
+          "cluster_count": 6,
+          "davies_bouldin": 0.49192808072584504,
+          "calinski_harabasz": 2962.2967743449217
+        },
+        {
+          "eps": 0.6,
+          "silhouette": 0.56269283796606,
+          "min_samples": 10,
+          "noise_share": 0.013666666666666667,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5119309833264294,
+          "calinski_harabasz": 3704.9455003233543
+        },
+        {
+          "eps": 0.6,
+          "silhouette": 0.5673717170862534,
+          "min_samples": 15,
+          "noise_share": 0.020666666666666667,
+          "cluster_count": 5,
+          "davies_bouldin": 0.4696062040908964,
+          "calinski_harabasz": 3929.222159652021
+        },
+        {
+          "eps": 0.6,
+          "silhouette": 0.60560677882997,
+          "min_samples": 20,
+          "noise_share": 0.029333333333333333,
+          "cluster_count": 4,
+          "davies_bouldin": 0.4338941040207779,
+          "calinski_harabasz": 5430.41539076408
+        },
+        {
+          "eps": 0.8,
+          "silhouette": 0.5545536025420136,
+          "min_samples": 5,
+          "noise_share": 0.006333333333333333,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5502933249086847,
+          "calinski_harabasz": 3453.8697742638506
+        },
+        {
+          "eps": 0.8,
+          "silhouette": 0.5598417030002744,
+          "min_samples": 10,
+          "noise_share": 0.010166666666666666,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5321901255788302,
+          "calinski_harabasz": 3620.153918049458
+        },
+        {
+          "eps": 0.8,
+          "silhouette": 0.5610436229791746,
+          "min_samples": 15,
+          "noise_share": 0.012166666666666666,
+          "cluster_count": 5,
+          "davies_bouldin": 0.517434555568242,
+          "calinski_harabasz": 3670.5007746199735
+        },
+        {
+          "eps": 0.8,
+          "silhouette": 0.5640611890316284,
+          "min_samples": 20,
+          "noise_share": 0.015333333333333332,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5021965254920299,
+          "calinski_harabasz": 3781.890865610995
+        },
+        {
+          "eps": 1,
+          "silhouette": 0.550789517783651,
+          "min_samples": 5,
+          "noise_share": 0.004,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5663696876776099,
+          "calinski_harabasz": 3329.3702630617877
+        },
+        {
+          "eps": 1,
+          "silhouette": 0.5542389805166206,
+          "min_samples": 10,
+          "noise_share": 0.006333333333333333,
+          "cluster_count": 5,
+          "davies_bouldin": 0.547953173144627,
+          "calinski_harabasz": 3464.71314066308
+        },
+        {
+          "eps": 1,
+          "silhouette": 0.5568861404194662,
+          "min_samples": 15,
+          "noise_share": 0.008333333333333333,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5358084690202511,
+          "calinski_harabasz": 3543.16962382138
+        },
+        {
+          "eps": 1,
+          "silhouette": 0.5593911618524048,
+          "min_samples": 20,
+          "noise_share": 0.009666666666666667,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5342589310767002,
+          "calinski_harabasz": 3626.475278063789
+        },
+        {
+          "eps": 1.3,
+          "silhouette": 0.5509276550740093,
+          "min_samples": 5,
+          "noise_share": 0.002,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5913958436424271,
+          "calinski_harabasz": 3232.9770226931487
+        },
+        {
+          "eps": 1.3,
+          "silhouette": 0.5528368301203015,
+          "min_samples": 10,
+          "noise_share": 0.003,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5809882013003341,
+          "calinski_harabasz": 3295.0874504533294
+        },
+        {
+          "eps": 1.3,
+          "silhouette": 0.5518939302208877,
+          "min_samples": 15,
+          "noise_share": 0.004666666666666667,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5579929676246946,
+          "calinski_harabasz": 3368.7273963744424
+        },
+        {
+          "eps": 1.3,
+          "silhouette": 0.5538000085353657,
+          "min_samples": 20,
+          "noise_share": 0.005666666666666667,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5551394420553691,
+          "calinski_harabasz": 3430.190259902215
+        },
+        {
+          "eps": 1.6,
+          "silhouette": 0.5533979736230094,
+          "min_samples": 5,
+          "noise_share": 0.0016666666666666668,
+          "cluster_count": 5,
+          "davies_bouldin": 0.6022957194970987,
+          "calinski_harabasz": 3215.5547783313004
+        },
+        {
+          "eps": 1.6,
+          "silhouette": 0.5546219049744189,
+          "min_samples": 10,
+          "noise_share": 0.0021666666666666666,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5974191805895016,
+          "calinski_harabasz": 3247.968137129781
+        },
+        {
+          "eps": 1.6,
+          "silhouette": 0.5550739880326264,
+          "min_samples": 15,
+          "noise_share": 0.0023333333333333335,
+          "cluster_count": 5,
+          "davies_bouldin": 0.597269256002771,
+          "calinski_harabasz": 3267.7085122426274
+        },
+        {
+          "eps": 1.6,
+          "silhouette": 0.5504852142459447,
+          "min_samples": 20,
+          "noise_share": 0.0035,
+          "cluster_count": 5,
+          "davies_bouldin": 0.5712803929539365,
+          "calinski_harabasz": 3328.877093632478
+        },
+        {
+          "eps": 2,
+          "silhouette": 0.5556710010925253,
+          "min_samples": 5,
+          "noise_share": 0.0011666666666666668,
+          "cluster_count": 5,
+          "davies_bouldin": 0.6177460948513089,
+          "calinski_harabasz": 3193.9743577981394
+        },
+        {
+          "eps": 2,
+          "silhouette": 0.5556710010925253,
+          "min_samples": 10,
+          "noise_share": 0.0011666666666666668,
+          "cluster_count": 5,
+          "davies_bouldin": 0.6177460948513089,
+          "calinski_harabasz": 3193.9743577981394
+        },
+        {
+          "eps": 2,
+          "silhouette": 0.5556710010925253,
+          "min_samples": 15,
+          "noise_share": 0.0011666666666666668,
+          "cluster_count": 5,
+          "davies_bouldin": 0.6177460948513089,
+          "calinski_harabasz": 3193.9743577981394
+        },
+        {
+          "eps": 2,
+          "silhouette": 0.5573435785048791,
+          "min_samples": 20,
+          "noise_share": 0.0018333333333333333,
+          "cluster_count": 5,
+          "davies_bouldin": 0.612670565814378,
+          "calinski_harabasz": 3245.306210098521
+        }
+      ],
+      "kmeans_trials": [
+        {
+          "k": 2,
+          "silhouette": 0.6813850623321256,
+          "davies_bouldin": 0.5567966233569899,
+          "calinski_harabasz": 9292.197024296618
+        },
+        {
+          "k": 3,
+          "silhouette": 0.5904830269035964,
+          "davies_bouldin": 0.7206328211079586,
+          "calinski_harabasz": 8984.704788795583
+        },
+        {
+          "k": 4,
+          "silhouette": 0.49083183394540614,
+          "davies_bouldin": 0.8227105240635978,
+          "calinski_harabasz": 7517.61165978218
+        },
+        {
+          "k": 5,
+          "silhouette": 0.503697361195999,
+          "davies_bouldin": 0.7238161176885396,
+          "calinski_harabasz": 7113.990209149437
+        },
+        {
+          "k": 6,
+          "silhouette": 0.461515264418791,
+          "davies_bouldin": 0.8587566282829986,
+          "calinski_harabasz": 7079.017057408525
+        },
+        {
+          "k": 7,
+          "silhouette": 0.4855838733405892,
+          "davies_bouldin": 0.7701944029014712,
+          "calinski_harabasz": 7027.249007617985
+        },
+        {
+          "k": 8,
+          "silhouette": 0.47739383432297244,
+          "davies_bouldin": 0.8086140753377223,
+          "calinski_harabasz": 7071.073638198865
+        },
+        {
+          "k": 9,
+          "silhouette": 0.43097413917458366,
+          "davies_bouldin": 0.7935034342579741,
+          "calinski_harabasz": 7178.171092933645
+        },
+        {
+          "k": 10,
+          "silhouette": 0.4230081787873332,
+          "davies_bouldin": 0.8109530913695382,
+          "calinski_harabasz": 7298.3896058029295
+        }
+      ],
+      "selected_dbscan": {
+        "eps": 0.4,
+        "silhouette": 0.621394973590196,
+        "min_samples": 15,
+        "noise_share": 0.04533333333333334,
+        "cluster_count": 4,
+        "davies_bouldin": 0.3980576356629021,
+        "calinski_harabasz": 5984.807810153709
+      },
+      "selected_kmeans": {
+        "k": 2,
+        "silhouette": 0.6813850623321256,
+        "davies_bouldin": 0.5567966233569899,
+        "calinski_harabasz": 9292.197024296618
+      },
+      "derived_thresholds": {
+        "has_delay_signal": false,
+        "feed_stale_threshold": 744046.7288231715,
+        "coverage_low_threshold": 0.9462324350945875,
+        "late_hotspot_threshold": 0,
+        "delay_hotspot_threshold": 0,
+        "coverage_watch_threshold": 0.9649271418757477
+      }
+    }
+  },
+  "latest_anomaly_run": {
+    "id": 14,
+    "family": "anomaly_detection",
+    "algorithm": "isolation_forest_lof",
+    "started_at": "2026-04-27T06:17:57.258108+00:00",
+    "completed_at": "2026-04-27T06:18:09.741834+00:00",
+    "rows_used": 5000,
+    "selected_params": {
+      "lof": {
+        "n_neighbors": 10,
+        "contamination": 0.02
+      },
+      "thresholds": {
+        "feed_stale_threshold": 300,
+        "late_anomaly_threshold": 0,
+        "delay_anomaly_threshold": 0,
+        "coverage_dropout_threshold": 0.8462
+      },
+      "isolation_forest": {
+        "max_samples": 256,
+        "n_estimators": 100,
+        "contamination": 0.05
+      }
+    },
+    "metrics": {
+      "lof_trials": [
+        {
+          "recall": 0,
+          "f1_proxy": 0,
+          "n_neighbors": 10,
+          "contamination": 0.01,
+          "precision_at_k": 0,
+          "false_alarm_share": 0.01
+        },
+        {
+          "recall": 0.055776892430278883,
+          "f1_proxy": 0.07999999999999999,
+          "n_neighbors": 10,
+          "contamination": 0.02,
+          "precision_at_k": 0.1414141414141414,
+          "false_alarm_share": 0.017
+        },
+        {
+          "recall": 0.10756972111553785,
+          "f1_proxy": 0.10778443113772455,
+          "n_neighbors": 10,
+          "contamination": 0.05,
+          "precision_at_k": 0.108,
+          "false_alarm_share": 0.0446
+        },
+        {
+          "recall": 0,
+          "f1_proxy": 0,
+          "n_neighbors": 20,
+          "contamination": 0.01,
+          "precision_at_k": 0,
+          "false_alarm_share": 0.0096
+        },
+        {
+          "recall": 0,
+          "f1_proxy": 0,
+          "n_neighbors": 20,
+          "contamination": 0.02,
+          "precision_at_k": 0,
+          "false_alarm_share": 0.0192
+        },
+        {
+          "recall": 0,
+          "f1_proxy": 0,
+          "n_neighbors": 20,
+          "contamination": 0.05,
+          "precision_at_k": 0,
+          "false_alarm_share": 0.0492
+        },
+        {
+          "recall": 0,
+          "f1_proxy": 0,
+          "n_neighbors": 35,
+          "contamination": 0.01,
+          "precision_at_k": 0,
+          "false_alarm_share": 0.008
+        },
+        {
+          "recall": 0,
+          "f1_proxy": 0,
+          "n_neighbors": 35,
+          "contamination": 0.02,
+          "precision_at_k": 0,
+          "false_alarm_share": 0.0162
+        },
+        {
+          "recall": 0,
+          "f1_proxy": 0,
+          "n_neighbors": 35,
+          "contamination": 0.05,
+          "precision_at_k": 0,
+          "false_alarm_share": 0.0484
+        },
+        {
+          "recall": 0,
+          "f1_proxy": 0,
+          "n_neighbors": 50,
+          "contamination": 0.01,
+          "precision_at_k": 0,
+          "false_alarm_share": 0.009
+        },
+        {
+          "recall": 0,
+          "f1_proxy": 0,
+          "n_neighbors": 50,
+          "contamination": 0.02,
+          "precision_at_k": 0,
+          "false_alarm_share": 0.0182
+        },
+        {
+          "recall": 0,
+          "f1_proxy": 0,
+          "n_neighbors": 50,
+          "contamination": 0.05,
+          "precision_at_k": 0,
+          "false_alarm_share": 0.0448
+        }
+      ],
+      "selected_lof": {
+        "recall": 0.055776892430278883,
+        "f1_proxy": 0.07999999999999999,
+        "n_neighbors": 10,
+        "contamination": 0.02,
+        "precision_at_k": 0.1414141414141414,
+        "false_alarm_share": 0.017
+      },
+      "derived_thresholds": {
+        "has_delay_signal": false,
+        "feed_stale_threshold": 300,
+        "late_anomaly_threshold": 0,
+        "delay_anomaly_threshold": 0,
+        "coverage_dropout_threshold": 0.8461538461538461
+      },
+      "isolation_forest_trials": [
+        {
+          "recall": 0.027888446215139442,
+          "f1_proxy": 0.046511627906976744,
+          "max_samples": 256,
+          "n_estimators": 100,
+          "contamination": 0.01,
+          "precision_at_k": 0.14,
+          "false_alarm_share": 0.0086
+        },
+        {
+          "recall": 0.08366533864541832,
+          "f1_proxy": 0.11965811965811965,
+          "max_samples": 256,
+          "n_estimators": 100,
+          "contamination": 0.02,
+          "precision_at_k": 0.21,
+          "false_alarm_share": 0.0158
+        },
+        {
+          "recall": 0.5059760956175299,
+          "f1_proxy": 0.5069860279441119,
+          "max_samples": 256,
+          "n_estimators": 100,
+          "contamination": 0.05,
+          "precision_at_k": 0.508,
+          "false_alarm_share": 0.0246
+        },
+        {
+          "recall": 0.07171314741035857,
+          "f1_proxy": 0.13138686131386862,
+          "max_samples": 512,
+          "n_estimators": 100,
+          "contamination": 0.01,
+          "precision_at_k": 0.782608695652174,
+          "false_alarm_share": 0.001
+        },
+        {
+          "recall": 0.10358565737051793,
+          "f1_proxy": 0.16049382716049382,
+          "max_samples": 512,
+          "n_estimators": 100,
+          "contamination": 0.02,
+          "precision_at_k": 0.3561643835616438,
+          "false_alarm_share": 0.0094
+        },
+        {
+          "recall": 0.4701195219123506,
+          "f1_proxy": 0.47105788423153694,
+          "max_samples": 512,
+          "n_estimators": 100,
+          "contamination": 0.05,
+          "precision_at_k": 0.472,
+          "false_alarm_share": 0.0264
+        },
+        {
+          "recall": 0.027888446215139442,
+          "f1_proxy": 0.046511627906976744,
+          "max_samples": "auto",
+          "n_estimators": 100,
+          "contamination": 0.01,
+          "precision_at_k": 0.14,
+          "false_alarm_share": 0.0086
+        },
+        {
+          "recall": 0.08366533864541832,
+          "f1_proxy": 0.11965811965811965,
+          "max_samples": "auto",
+          "n_estimators": 100,
+          "contamination": 0.02,
+          "precision_at_k": 0.21,
+          "false_alarm_share": 0.0158
+        },
+        {
+          "recall": 0.5059760956175299,
+          "f1_proxy": 0.5069860279441119,
+          "max_samples": "auto",
+          "n_estimators": 100,
+          "contamination": 0.05,
+          "precision_at_k": 0.508,
+          "false_alarm_share": 0.0246
+        },
+        {
+          "recall": 0.0398406374501992,
+          "f1_proxy": 0.07518796992481203,
+          "max_samples": 256,
+          "n_estimators": 200,
+          "contamination": 0.01,
+          "precision_at_k": 0.6666666666666666,
+          "false_alarm_share": 0.001
+        },
+        {
+          "recall": 0.08366533864541832,
+          "f1_proxy": 0.11965811965811965,
+          "max_samples": 256,
+          "n_estimators": 200,
+          "contamination": 0.02,
+          "precision_at_k": 0.21,
+          "false_alarm_share": 0.0158
+        },
+        {
+          "recall": 0.4900398406374502,
+          "f1_proxy": 0.492,
+          "max_samples": 256,
+          "n_estimators": 200,
+          "contamination": 0.05,
+          "precision_at_k": 0.4939759036144578,
+          "false_alarm_share": 0.0252
+        },
+        {
+          "recall": 0.08764940239043825,
+          "f1_proxy": 0.15770609318996417,
+          "max_samples": 512,
+          "n_estimators": 200,
+          "contamination": 0.01,
+          "precision_at_k": 0.7857142857142857,
+          "false_alarm_share": 0.0012
+        },
+        {
+          "recall": 0.11952191235059761,
+          "f1_proxy": 0.1801801801801802,
+          "max_samples": 512,
+          "n_estimators": 200,
+          "contamination": 0.02,
+          "precision_at_k": 0.36585365853658536,
+          "false_alarm_share": 0.0104
+        },
+        {
+          "recall": 0.47410358565737054,
+          "f1_proxy": 0.4760000000000001,
+          "max_samples": 512,
+          "n_estimators": 200,
+          "contamination": 0.05,
+          "precision_at_k": 0.4779116465863454,
+          "false_alarm_share": 0.026
+        },
+        {
+          "recall": 0.0398406374501992,
+          "f1_proxy": 0.07518796992481203,
+          "max_samples": "auto",
+          "n_estimators": 200,
+          "contamination": 0.01,
+          "precision_at_k": 0.6666666666666666,
+          "false_alarm_share": 0.001
+        },
+        {
+          "recall": 0.08366533864541832,
+          "f1_proxy": 0.11965811965811965,
+          "max_samples": "auto",
+          "n_estimators": 200,
+          "contamination": 0.02,
+          "precision_at_k": 0.21,
+          "false_alarm_share": 0.0158
+        },
+        {
+          "recall": 0.4900398406374502,
+          "f1_proxy": 0.492,
+          "max_samples": "auto",
+          "n_estimators": 200,
+          "contamination": 0.05,
+          "precision_at_k": 0.4939759036144578,
+          "false_alarm_share": 0.0252
+        },
+        {
+          "recall": 0.05179282868525897,
+          "f1_proxy": 0.09665427509293682,
+          "max_samples": 256,
+          "n_estimators": 500,
+          "contamination": 0.01,
+          "precision_at_k": 0.7222222222222222,
+          "false_alarm_share": 0.001
+        },
+        {
+          "recall": 0.09561752988047809,
+          "f1_proxy": 0.15047021943573669,
+          "max_samples": 256,
+          "n_estimators": 500,
+          "contamination": 0.02,
+          "precision_at_k": 0.35294117647058826,
+          "false_alarm_share": 0.0088
+        },
+        {
+          "recall": 0.4820717131474104,
+          "f1_proxy": 0.48303393213572854,
+          "max_samples": 256,
+          "n_estimators": 500,
+          "contamination": 0.05,
+          "precision_at_k": 0.484,
+          "false_alarm_share": 0.0258
+        },
+        {
+          "recall": 0.099601593625498,
+          "f1_proxy": 0.17301038062283736,
+          "max_samples": 512,
+          "n_estimators": 500,
+          "contamination": 0.01,
+          "precision_at_k": 0.6578947368421053,
+          "false_alarm_share": 0.0026
+        },
+        {
+          "recall": 0.11553784860557768,
+          "f1_proxy": 0.17469879518072287,
+          "max_samples": 512,
+          "n_estimators": 500,
+          "contamination": 0.02,
+          "precision_at_k": 0.35802469135802467,
+          "false_alarm_share": 0.0104
+        },
+        {
+          "recall": 0.46613545816733065,
+          "f1_proxy": 0.468,
+          "max_samples": 512,
+          "n_estimators": 500,
+          "contamination": 0.05,
+          "precision_at_k": 0.46987951807228917,
+          "false_alarm_share": 0.0264
+        },
+        {
+          "recall": 0.05179282868525897,
+          "f1_proxy": 0.09665427509293682,
+          "max_samples": "auto",
+          "n_estimators": 500,
+          "contamination": 0.01,
+          "precision_at_k": 0.7222222222222222,
+          "false_alarm_share": 0.001
+        },
+        {
+          "recall": 0.09561752988047809,
+          "f1_proxy": 0.15047021943573669,
+          "max_samples": "auto",
+          "n_estimators": 500,
+          "contamination": 0.02,
+          "precision_at_k": 0.35294117647058826,
+          "false_alarm_share": 0.0088
+        },
+        {
+          "recall": 0.4820717131474104,
+          "f1_proxy": 0.48303393213572854,
+          "max_samples": "auto",
+          "n_estimators": 500,
+          "contamination": 0.05,
+          "precision_at_k": 0.484,
+          "false_alarm_share": 0.0258
+        }
+      ],
+      "selected_isolation_forest": {
+        "recall": 0.5059760956175299,
+        "f1_proxy": 0.5069860279441119,
+        "max_samples": 256,
+        "n_estimators": 100,
+        "contamination": 0.05,
+        "precision_at_k": 0.508,
+        "false_alarm_share": 0.0246
+      },
+      "pseudo_label_positive_count": 251
+    }
+  },
+  "cluster_geojson_feature_count": 1200,
+  "anomaly_geojson_feature_count": 453,
+  "cluster_geojson_sample": [
+    {
+      "type": "Feature",
+      "properties": {
+        "route_id": "2114",
+        "route_short_name": "114",
+        "route_type": 701,
+        "stop_id": "2314212",
+        "stop_name": "Matinkylä (M)",
+        "kmeans_cluster": 0,
+        "dbscan_cluster": 3,
+        "dbscan_is_hotspot": true,
+        "reliability_label": "low_realtime_coverage",
+        "mean_delay_minutes": 0,
+        "p95_abs_delay_minutes": 0,
+        "prediction_coverage_ratio": 0.93,
+        "sample_count": 14,
+        "updated_at": "2026-04-27T06:16:28.654937+00:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.738933,
+          60.16024900000001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route_id": "2118",
+        "route_short_name": "118",
+        "route_type": 701,
+        "stop_id": "2611208",
+        "stop_name": "Espoon asema",
+        "kmeans_cluster": 0,
+        "dbscan_cluster": 3,
+        "dbscan_is_hotspot": true,
+        "reliability_label": "low_realtime_coverage",
+        "mean_delay_minutes": 0,
+        "p95_abs_delay_minutes": 0,
+        "prediction_coverage_ratio": 0.943,
+        "sample_count": 14,
+        "updated_at": "2026-04-27T06:16:28.654937+00:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.658466,
+          60.206091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route_id": "1094A",
+        "route_short_name": "94A",
+        "route_type": 701,
+        "stop_id": "1471122",
+        "stop_name": "Paneliantie",
+        "kmeans_cluster": 0,
+        "dbscan_cluster": 3,
+        "dbscan_is_hotspot": true,
+        "reliability_label": "low_realtime_coverage",
+        "mean_delay_minutes": 0,
+        "p95_abs_delay_minutes": 0,
+        "prediction_coverage_ratio": 0.912,
+        "sample_count": 14,
+        "updated_at": "2026-04-27T06:16:28.654937+00:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.087701,
+          60.243513
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route_id": "1077",
+        "route_short_name": "77",
+        "route_type": 701,
+        "stop_id": "1240103",
+        "stop_name": "Kumpulan kampus",
+        "kmeans_cluster": 0,
+        "dbscan_cluster": 3,
+        "dbscan_is_hotspot": true,
+        "reliability_label": "low_realtime_coverage",
+        "mean_delay_minutes": 0,
+        "p95_abs_delay_minutes": 0,
+        "prediction_coverage_ratio": 0.944,
+        "sample_count": 14,
+        "updated_at": "2026-04-27T06:16:28.654937+00:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.965951999999998,
+          60.203679
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "route_id": "4311",
+        "route_short_name": "311",
+        "route_type": 701,
+        "stop_id": "4160206",
+        "stop_name": "Kaivostie",
+        "kmeans_cluster": 0,
+        "dbscan_cluster": 3,
+        "dbscan_is_hotspot": true,
+        "reliability_label": "low_realtime_coverage",
+        "mean_delay_minutes": 0,
+        "p95_abs_delay_minutes": 0,
+        "prediction_coverage_ratio": 0.93,
+        "sample_count": 14,
+        "updated_at": "2026-04-27T06:16:28.654937+00:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.870030000000003,
+          60.266270000000006
+        ]
+      }
+    }
+  ],
+  "anomaly_geojson_sample": [
+    {
+      "type": "Feature",
+      "properties": {
+        "bucket": "2026-04-27T06:00:00+00:00",
+        "route_id": "9973",
+        "route_short_name": "973",
+        "route_type": 701,
+        "stop_id": "4720206",
+        "stop_name": "Rekolan asema",
+        "isolation_forest_score": 0.1674,
+        "isolation_forest_is_anomaly": true,
+        "lof_score": 31874597266.0181,
+        "lof_is_anomaly": true,
+        "pseudo_label": false,
+        "anomaly_reason": "model flagged unusual pattern",
+        "mean_delay_minutes": 0,
+        "prediction_coverage_ratio": 1,
+        "feed_age_seconds": 231.8,
+        "updated_at": "2026-04-27T06:18:09.593952+00:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.06437,
+          60.3343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bucket": "2026-04-27T06:00:00+00:00",
+        "route_id": "6902K",
+        "route_short_name": "902K",
+        "route_type": 701,
+        "stop_id": "6090246",
+        "stop_name": "Porkkalantie 1544",
+        "isolation_forest_score": 0.1674,
+        "isolation_forest_is_anomaly": true,
+        "lof_score": 25749239555.9918,
+        "lof_is_anomaly": true,
+        "pseudo_label": false,
+        "anomaly_reason": "model flagged unusual pattern",
+        "mean_delay_minutes": 0,
+        "prediction_coverage_ratio": 1,
+        "feed_age_seconds": 199.9,
+        "updated_at": "2026-04-27T06:18:09.593952+00:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.457476,
+          60.009741
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bucket": "2026-04-27T06:00:00+00:00",
+        "route_id": "6902K",
+        "route_short_name": "902K",
+        "route_type": 701,
+        "stop_id": "6090201",
+        "stop_name": "Porkkala",
+        "isolation_forest_score": 0.1674,
+        "isolation_forest_is_anomaly": true,
+        "lof_score": 25749239555.9918,
+        "lof_is_anomaly": true,
+        "pseudo_label": false,
+        "anomaly_reason": "model flagged unusual pattern",
+        "mean_delay_minutes": 0,
+        "prediction_coverage_ratio": 1,
+        "feed_age_seconds": 199.9,
+        "updated_at": "2026-04-27T06:18:09.593952+00:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.430405,
+          59.987483
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bucket": "2026-04-27T06:00:00+00:00",
+        "route_id": "6902K",
+        "route_short_name": "902K",
+        "route_type": 701,
+        "stop_id": "6090233",
+        "stop_name": "Grållas",
+        "isolation_forest_score": 0.1674,
+        "isolation_forest_is_anomaly": true,
+        "lof_score": 25749239555.9918,
+        "lof_is_anomaly": true,
+        "pseudo_label": false,
+        "anomaly_reason": "model flagged unusual pattern",
+        "mean_delay_minutes": 0,
+        "prediction_coverage_ratio": 1,
+        "feed_age_seconds": 199.9,
+        "updated_at": "2026-04-27T06:18:09.593952+00:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.454296,
+          60.009204
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bucket": "2026-04-27T06:00:00+00:00",
+        "route_id": "6902K",
+        "route_short_name": "902K",
+        "route_type": 701,
+        "stop_id": "6090244",
+        "stop_name": "Lillkanskog",
+        "isolation_forest_score": 0.1674,
+        "isolation_forest_is_anomaly": true,
+        "lof_score": 25749239555.9918,
+        "lof_is_anomaly": true,
+        "pseudo_label": false,
+        "anomaly_reason": "model flagged unusual pattern",
+        "mean_delay_minutes": 0,
+        "prediction_coverage_ratio": 1,
+        "feed_age_seconds": 199.9,
+        "updated_at": "2026-04-27T06:18:09.593952+00:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.455442,
+          60.007402
+        ]
+      }
+    }
+  ]
+}

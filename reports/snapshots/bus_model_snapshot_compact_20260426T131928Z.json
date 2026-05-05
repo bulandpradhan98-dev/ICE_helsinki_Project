@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-04-26T13:19:28.429Z",
+  "source_note": "Recovered compact snapshot from the April 26 saved evidence run so both previous and current captures are preserved.",
+  "latest_realtime_vehicle_position_at": "2026-04-26T13:18:58.568803Z",
+  "latest_realtime_trip_update_at": "2026-04-26T13:18:58.702449Z",
+  "feature_windows": 125650,
+  "latest_feature_bucket": "2026-04-26T13:00:00+00:00",
+  "cluster_assignments": 6000,
+  "hotspot_count": 400,
+  "active_anomalies": 248,
+  "avg_prediction_coverage": 0.9743914003039058,
+  "cluster_run_id": 11,
+  "anomaly_run_id": 12,
+  "kmeans_selected": {
+    "k": 2,
+    "n_init": 20
+  },
+  "dbscan_selected": {
+    "eps": 0.4,
+    "min_samples": 20
+  },
+  "isolation_forest_selected": {
+    "max_samples": 256,
+    "n_estimators": 200,
+    "contamination": 0.05
+  },
+  "lof_selected": {
+    "n_neighbors": 35,
+    "contamination": 0.01
+  },
+  "kmeans_metrics": {
+    "k": 2,
+    "silhouette": 0.7371301093666444,
+    "davies_bouldin": 0.4123770239515902,
+    "calinski_harabasz": 12546.420662147959
+  },
+  "dbscan_metrics": {
+    "eps": 0.4,
+    "silhouette": 0.7688874990461069,
+    "min_samples": 20,
+    "noise_share": 0.03716666666666667,
+    "cluster_count": 2,
+    "davies_bouldin": 0.3498744475424434,
+    "calinski_harabasz": 18398.673043751776
+  },
+  "isolation_forest_metrics": {
+    "recall": 0.46421267893660534,
+    "f1_proxy": 0.616010854816825,
+    "max_samples": 256,
+    "n_estimators": 200,
+    "contamination": 0.05,
+    "precision_at_k": 0.9153225806451613,
+    "false_alarm_share": 0.0042
+  },
+  "lof_metrics": {
+    "recall": 0.09406952965235174,
+    "f1_proxy": 0.17196261682242991,
+    "n_neighbors": 35,
+    "contamination": 0.01,
+    "precision_at_k": 1.0,
+    "false_alarm_share": 0.0
+  }
+}
