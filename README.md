@@ -8,28 +8,26 @@ This project is a bus-only urban mobility data-science project for analyzing **H
 - **Machine learning / data mining** for route reliability clustering and anomaly detection.
 - **React + MapLibre dashboard** for live map inspection and statistical analytics.
 
-The exam story is intentionally focused:
+The analysis is guided by a focused question:
 
 > How reliable are HSL bus routes, where do reliability patterns or hotspots appear, and which realtime bus-operation windows look unusual?
 
-The raw HSL feed contains multiple public-transport modes, but this project focuses on **bus-family GTFS `route_type` codes -- `701` Regional Bus Service, `702`Express Bus Service , and `704`Local Bus Service** so the modelling and explanation remain consistent. These are **mode/category codes from the imported HSL GTFS feed**, not individual bus line numbers.
+The raw HSL feed contains multiple public-transport modes, but this project focuses on **bus-family GTFS `route_type` codes: `701` Regional Bus Service, `702` Express Bus Service, and `704` Local Bus Service**. These are **mode/category codes from the imported HSL GTFS feed**, not individual bus line numbers.
 
 ---
 
 ## 1. Project Objective
 
-The course objective is to apply data science to real urban mobility data. This project satisfies that by:
+The project turns public HSL schedule and realtime feeds into an operational view of bus reliability. It:
 
-1. Selecting a real public transport dataset from HSL.
-2. Understanding GTFS and GTFS-RT structure.
-3. Preprocessing raw schedule and realtime data into route-stop-time features.
-4. Applying at least two data mining techniques:
-   - Clustering / pattern discovery.
-   - Anomaly detection.
-5. Evaluating model outputs using appropriate metrics.
-6. Communicating insights through notebooks, exported evidence, and a dashboard.
+1. Imports static GTFS schedules and GTFS-RT observations.
+2. Links realtime vehicle and stop updates to the scheduled network.
+3. Builds route-stop-hour reliability features.
+4. Discovers recurring operating patterns with clustering.
+5. Flags unusual operating windows with anomaly detection.
+6. Exposes the results through a documented API, notebooks, and an interactive dashboard.
 
-The dashboard is not only a web demo. It is the visual proof layer for the notebook analysis.
+The central question is whether HSL bus routes are operating reliably, where recurring hotspots occur, and which operating windows deserve investigation.
 
 ---
 
@@ -43,6 +41,38 @@ The system has four main modules.
 | Linker / Feature Builder | Converts raw realtime updates into usable bus reliability feature windows | `backend/app/jobs/modeling.py` |
 | Calculator / Models | Runs KMeans, DBSCAN, Isolation Forest, and LOF | `backend/app/jobs/modeling.py`, notebooks |
 | Dashboard | Shows live buses, route analytics, clusters, hotspots, and anomalies | `frontend/src/App.tsx`, `frontend/src/components/MapPanel.tsx` |
+
+### Repository Layout
+
+```text
+backend/                 FastAPI API, ingestion jobs, feature engineering, and models
+frontend/                React, TypeScript, and MapLibre dashboard
+notebooks/               Reproducible data-mining and evaluation notebooks
+backend/sql/             PostgreSQL/PostGIS/TimescaleDB schema and seed SQL
+docs/                    Architecture, dashboard, and implementation documentation
+reports/                 Selected snapshots, screenshots, and project reports
+scripts/                 Evidence-export and utility scripts
+docker-compose.yml       Local multi-service environment
+.env.example             Safe configuration template
+```
+
+### Data Flow
+
+```text
+HSL GTFS + GTFS-RT
+        |
+        v
+Ingestion and PostgreSQL/PostGIS storage
+        |
+        v
+Route-stop-hour feature engineering
+        |
+        +--> KMeans / DBSCAN clustering
+        +--> Isolation Forest / LOF anomaly detection
+        |
+        v
+FastAPI endpoints --> React/MapLibre dashboard
+```
 
 ---
 
@@ -62,16 +92,30 @@ The system has four main modules.
 
 ## 4. How To Run
 
-Start Docker Desktop first.
+Start Docker Desktop, then create the local environment file:
 
 ```powershell
-docker compose up -d
+Copy-Item .env.example .env
+```
+
+Build and start the services:
+
+```powershell
+docker compose up -d --build
 ```
 
 Open:
 
 - Dashboard: `http://localhost:5173/`
 - API docs: `http://localhost:8000/docs`
+
+On a new database, import the current static HSL schedule:
+
+```powershell
+Invoke-RestMethod -Method Post http://localhost:8000/api/v1/ingestion/static/import
+```
+
+The realtime poller runs continuously after startup. Model features, clusters, and anomaly scores can be generated from the dashboard control center or the API endpoints listed below.
 
 Stop safely:
 
@@ -118,7 +162,7 @@ The HSL feed is multimodal, but buses are selected because:
 - Bus reliability is directly connected to delays and schedule adherence.
 - Buses operate on road networks and are sensitive to traffic conditions.
 - A bus-only scope makes clustering and anomaly detection easier to explain.
-- The dashboard and report stay focused for the exam.
+- A single-mode scope keeps feature definitions and model interpretation consistent.
 
 ### What Do `701`, `702`, And `704` Mean?
 
@@ -150,7 +194,7 @@ it means:
 
 ---
 
-## 6. Part 1: Data Understanding
+## 6. Data Understanding
 
 ### Problem Statement
 
@@ -190,15 +234,9 @@ HSL TripUpdates usually provide predicted `arrival.time` and `departure.time` va
 
 If the protobuf `delay` field is absent, it is treated as missing, not as zero. This is important because otherwise missing delay values would incorrectly make every bus look on time.
 
-Evidence:
-
-- Existing Part 1 notebook from the course submission.
-- `docs/viva-explanation-guide.md`
-- `docs/exam-proof-pack.md`
-
 ---
 
-## 7. Part 2: Data Preprocessing
+## 7. Data Preparation
 
 Preprocessing turns raw GTFS and GTFS-RT into model-ready features.
 
@@ -234,16 +272,13 @@ The feature table includes:
 - Weekend flag.
 - Stop latitude and longitude.
 
-Evidence:
-
-- `reports/history_exports/bus_model_feature_windows_recent.csv`
-- `notebooks/03_data_mining_gtfs_rt.ipynb`
+Implementation and reproducible analysis are available in `backend/app/jobs/modeling.py` and `notebooks/03_data_mining_gtfs_rt.ipynb`.
 
 ---
 
-## 8. Part 3: Data Mining Techniques
+## 8. Modeling Methods
 
-The rubric requires at least two techniques. This project uses two categories and four algorithms.
+The project combines complementary pattern-discovery and anomaly-detection methods.
 
 ### Technique A: Clustering / Pattern Discovery
 
@@ -341,16 +376,11 @@ Evaluation evidence:
 - Recall around `0.094`
 - False-alarm share around `0.000`
 
-Evidence:
-
-- `notebooks/03_data_mining_gtfs_rt.ipynb`
-- `reports/snapshots/bus_model_snapshot_latest.json`
-- `reports/history_exports/bus_cluster_assignments_latest.csv`
-- `reports/history_exports/bus_anomaly_scores_latest.csv`
+Model implementation and saved results are available in `backend/app/jobs/modeling.py`, `notebooks/03_data_mining_gtfs_rt.ipynb`, and `reports/snapshots/bus_model_snapshot_latest.json`.
 
 ---
 
-## 9. Part 4: Model Evaluation And Interpretation
+## 9. Model Evaluation And Interpretation
 
 ### Clustering Metrics
 
@@ -386,10 +416,7 @@ The evaluation supports these conclusions:
 - LOF is more conservative and useful for high-confidence anomaly flags.
 - Realtime coverage is an important limitation and should be shown, not hidden.
 
-Evidence:
-
-- `notebooks/04_model_evaluation_interpretation.ipynb`
-- `docs/exam-proof-pack.md`
+The full evaluation workflow is in `notebooks/04_model_evaluation_interpretation.ipynb`.
 
 ---
 
@@ -416,7 +443,7 @@ The dashboard intentionally hides low-confidence live bus rows. A vehicle is sho
 - At least one stop-time update in the TripUpdate payload.
 - A usable current vehicle status.
 
-This prevents the map from showing buses that cannot be properly explained in the presentation.
+This prevents the map from showing buses without enough context for reliable interpretation.
 
 ### Statistical Analytics Dashboard
 
@@ -435,9 +462,7 @@ The redesigned dashboard now starts with an industry-style command center.
 | Reliability labels | Cluster interpretation from model output |
 | Anomaly reasons | Explainable anomaly categories |
 
-Important speaking point:
-
-> The map shows where buses are. The statistical dashboard explains what the data means.
+The map shows where buses are, while the statistical panels explain what the available data means.
 
 Evidence:
 
@@ -467,7 +492,7 @@ Evidence:
 
 ---
 
-## 12. Evidence Files
+## 12. Project Artifacts
 
 ### Notebooks
 
@@ -480,128 +505,19 @@ Evidence:
 - `reports/snapshots/bus_model_snapshot_latest.json`
 - `reports/bus_model_snapshot_summary.md`
 
-### CSV Exports
-
-- `reports/history_exports/bus_vehicle_positions_recent.csv`
-- `reports/history_exports/bus_trip_updates_recent.csv`
-- `reports/history_exports/bus_model_feature_windows_recent.csv`
-- `reports/history_exports/bus_cluster_assignments_latest.csv`
-- `reports/history_exports/bus_anomaly_scores_latest.csv`
-
 ### Documentation
 
 - `docs/dashboard-readme.md`
-- `docs/exam-proof-pack.md`
-- `docs/viva-explanation-guide.md`
 - `docs/statistical-dashboard-guide.md`
-- `docs/code-walkthrough-for-presentation.md`
+- `docs/architecture.md`
+- `docs/reference-architecture-notes.md`
 - `docs/historical-gtfs-rt-notes.md`
 
 ---
 
-## 13. Presentation Structure
+## 13. Troubleshooting
 
-Use this 10-minute structure.
-
-### Slide 1: Title
-
-HSL Bus Reliability Analyzer: GTFS vs GTFS-RT Data Science Dashboard.
-
-### Slide 2: Problem
-
-Municipal planners need to understand bus reliability using real schedule and realtime data.
-
-### Slide 3: Dataset
-
-Explain static GTFS and GTFS-RT.
-
-### Slide 4: Why Bus-Only
-
-Explain that `701`, `702`, and `704` are HSL GTFS `route_type` mode/category codes for bus-family services, not individual bus line numbers.
-
-### Slide 5: Preprocessing
-
-Show feature engineering: delay, coverage, freshness, time features, route-stop-hour windows.
-
-### Slide 6: Clustering
-
-Explain KMeans and DBSCAN with metrics.
-
-### Slide 7: Anomaly Detection
-
-Explain Isolation Forest and LOF with metrics.
-
-### Slide 8: Dashboard
-
-Show live map and statistical analytics dashboard screenshots.
-
-### Slide 9: Insights
-
-Explain route health, hotspots, anomaly watchlist, and coverage.
-
-### Slide 10: Limitations And Future Work
-
-Mention limited GTFS-RT history, noisy trip matching, and possible future predictive modelling.
-
----
-
-## 14. Key Viva Answers
-
-### Why did you choose HSL?
-
-HSL provides real public GTFS and GTFS-RT data, making it suitable for urban mobility analysis.
-
-### Why bus-only?
-
-The full feed is multimodal, but bus reliability is a clearer and more consistent modelling problem.
-
-### What is the main target?
-
-Bus reliability and schedule adherence, supported by delay, coverage, and anomaly features.
-
-### Why clustering?
-
-To discover similar route-stop-hour reliability patterns without predefined labels.
-
-### Why anomaly detection?
-
-To identify unusual bus operation windows when true disruption labels are unavailable.
-
-### Why no predictive modelling?
-
-The rubric requires at least two data mining techniques. Clustering and anomaly detection satisfy the requirement and fit the available data better than prediction with limited historical GTFS-RT.
-
-### What is the biggest limitation?
-
-Historical GTFS-RT data only accumulates when the poller is running, and HSL realtime matching can be noisy.
-
----
-
-## 15. Current Readiness
-
-The project is ready for PPT preparation because it has:
-
-- A focused bus-only story.
-- Part 1 and Part 2 explanation.
-- Part 3 data mining notebook.
-- Part 4 evaluation notebook.
-- Dashboard with live map and statistical analytics.
-- Saved screenshots and CSV evidence.
-- Documentation for presentation and viva.
-
-Before final submission:
-
-1. Run both notebooks top-to-bottom in Jupyter.
-2. Save notebook outputs.
-3. Add dashboard screenshots to the PPT.
-4. Keep the presentation wording bus-only and HSL-focused.
-5. Be honest about GTFS-RT history limitations.
-
----
-
-## 16. Notebook Execution Troubleshooting
-
-Use this section if Part 3 or Part 4 notebook cells fail.
+Use this section if the application or notebook cells fail.
 
 ### Step 1: Start Docker
 
@@ -675,14 +591,6 @@ Run this inside the notebook:
 
 Then rerun the plotting cells.
 
-### Step 7: What To Submit If Live API Fails
+### Step 7: Use Saved Snapshots Offline
 
-If the live API has an issue near the deadline, submit the notebooks using the saved snapshot evidence:
-
-- `reports/snapshots/bus_model_snapshot_compact_20260426T131928Z.json`
-- `reports/snapshots/bus_model_snapshot_compact_20260427T062030Z.json`
-- `reports/history_exports/bus_model_feature_windows_recent_20260427_092121.csv`
-- `reports/history_exports/bus_cluster_assignments_latest_20260427_092121.csv`
-- `reports/history_exports/bus_anomaly_scores_latest_20260427_092121.csv`
-
-That is acceptable because these files are reproducible saved outputs from the project pipeline.
+If the live API is unavailable, the notebooks can use the reproducible snapshots under `reports/snapshots/` for offline inspection.
