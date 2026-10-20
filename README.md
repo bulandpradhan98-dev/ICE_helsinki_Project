@@ -444,6 +444,7 @@ Evidence:
 - `reports/screenshots/hsl-bus-dashboard-live.png`
 - `reports/screenshots/hsl-bus-statistical-analytics-dashboard.png`
 - `reports/screenshots/hsl-bus-industry-analytics-dashboard.png`
+- `docs/dashboard-readme.md`
 - `docs/statistical-dashboard-guide.md`
 
 ---
@@ -489,9 +490,11 @@ Evidence:
 
 ### Documentation
 
+- `docs/dashboard-readme.md`
 - `docs/exam-proof-pack.md`
 - `docs/viva-explanation-guide.md`
 - `docs/statistical-dashboard-guide.md`
+- `docs/code-walkthrough-for-presentation.md`
 - `docs/historical-gtfs-rt-notes.md`
 
 ---
